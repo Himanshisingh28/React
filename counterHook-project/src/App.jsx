@@ -10,8 +10,12 @@ function App() {
   // let counter=15
   const addValue = () =>{
     console.log("clicked", counter);
-    counter=counter+1
-    setCounter(counter)
+    setCounter(counter+1)
+    // agar increasement bakai main karnta hai to
+    // setCounter(prevcounter => prevcounter+1)
+    // setCounter(prevcounter => prevcounter+1)
+    // setCounter(prevcounter => prevcounter+1)
+    // setCounter(prevcounter => prevcounter+1)
   }
   const removeValue = () => {
     console.log(counter);
