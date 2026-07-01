@@ -1,7 +1,12 @@
 import Card from "./Card.jsx"
+import ColorChanging from "./colorChanging.jsx"
 function App() {
     return(
-      <Card/>
+      
+      // {/* <Card/> */}
+      <ColorChanging/>
+      
+
 )}
 
 export default App
