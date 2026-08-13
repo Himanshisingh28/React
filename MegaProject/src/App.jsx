@@ -35,12 +35,6 @@ function App() {
           TODOO{/* <Outlet/> */}
         </main>
         <footer />
-        <Header />
-        <main>
-          TODOO{/* <Outlet/> */}
-        </main>
-        <footer />
-
       </div>
     </div>
   ) : null
