@@ -23,6 +23,6 @@ function Select ({
                   </select>
             </div>
       )
-}
+}  
 
-export default Select
+export default React.forwardRef(Select)
