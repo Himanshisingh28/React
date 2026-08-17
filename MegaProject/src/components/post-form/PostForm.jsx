@@ -72,7 +72,7 @@ function PostForm({ post }){
       },[watch, slugTransform, setValue])
 return (
       <div>
-
+            {/* form */}
       </div>
 )
 

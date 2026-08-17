@@ -4,11 +4,24 @@ import Container from "./container/Container";
 import Logo from "./logo";
 import LogOutbtn from "./Header/LogOutbtn";
 import RTE from "./RTE";
+import Signup from "./Signup";
+import Login from "./Login";
+import Post from './Post';
+import PostForm from "./post-form/PostForm";
+import PostCard from "../components/PostCard"
+import AuthLayout from"./AuthLayout"
+
 export {
       Header,
       footer,
       Container,
       Logo,
       LogOutbtn,
-      RTE
+      RTE,
+      Signup,
+      Login,
+      Post,
+      PostForm,
+      PostCard,
+      AuthLayout
 }
