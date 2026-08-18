@@ -52,7 +52,7 @@ export class Service {
       async deletePost(slug){
             try {
                   await this.databases.deleteDocument(
-                        conf.appwriteDATABASE_iD,
+                        conf.appwriteDATABASE_ID,
                         conf.appwriteTABLE_ID,
                         slug
 
@@ -68,7 +68,7 @@ export class Service {
       async getPost(slug){
             try {
                   return await this.databases.getDocument(
-                        conf.appwriteDATABASE_iD,
+                        conf.appwriteDATABASE_ID,
                         conf.appwriteTABLE_ID,
                         slug
                   )
@@ -78,9 +78,9 @@ export class Service {
             }
       }
 
-      async getPost(queries = [Query.equal("status", "active")]) {
+      async getPosts(queries = [Query.equal("status", "active")]) {
             try {
-                  return await this.databases.listDocuments(conf.appwriteDATABASE_iD,
+                  return await this.databases.listDocuments(conf.appwriteDATABASE_ID,
                   conf.appwriteTABLE_ID,
                   queries,
 
@@ -115,4 +115,4 @@ export class Service {
 }
 
 const service = new Service()
-export default Service
+export default service

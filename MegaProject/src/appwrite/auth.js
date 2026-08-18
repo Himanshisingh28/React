@@ -12,7 +12,7 @@ export class AuthService {
                  .setProject(conf.appwritePROJECT_ID);
             this.account = new Account(this.client);
       }
-      async createAccount({emial, password, name}){
+      async createAccount({email, password, name}){
             try {
                   const userAccount = await this.account.create(ID.unique(), email, password, name);
                   if (userAccount) {
@@ -28,7 +28,7 @@ export class AuthService {
       }
       async login({email, password}){
             try {
-                  await this.account.createAnonymousSession(email,password);
+                  await this.account.createEmailPasswordSession(email,password);
             } catch (error) {
                   throw error;
                   
@@ -51,6 +51,6 @@ export class AuthService {
             }
       }
 }
-const authservice = new AuthService(); 
+const authService = new AuthService(); 
 
-export default authservice
+export default authService
