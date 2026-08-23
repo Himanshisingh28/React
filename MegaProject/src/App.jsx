@@ -5,7 +5,7 @@ import authService from './appwrite/auth'
 // import authService from "./store/authSlice"
 import { login, logout } from './store/authSlice'
 import { Header } from './components'
-import { footer } from './components'
+import { Footer } from './components'
 import { Outlet } from 'react-router-dom'
 
 
@@ -18,7 +18,6 @@ function App() {
       .then((userData) => {
         if (userData) {
           dispatch(login({ userData }))
-
         } else {
           dispatch(logout())
         }
@@ -27,18 +26,16 @@ function App() {
   }, [])
 
   return !loading ? (
-    <div className='min-h-screen' flex flex-wrap
-      content-between bg-gray-400>
+    <div className='min-h-screen flex flex-wrap justify-between bg-gray-400'>
       <div className='w-full block'>
         <Header />
         <main>
-          TODOO{/* <Outlet/> */}
+          TODOO {/* <Outlet/> */}
         </main>
-        <footer />
+        <Footer />
       </div>
     </div>
   ) : null
-
 }
 
 export default App
