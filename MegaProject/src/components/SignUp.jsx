@@ -18,9 +18,8 @@ function SignUp() {
             try {
                   const userData = await authservice.createAccount(data)
                   if (userData) {
-                        const userData = await authservice.
-                              getCurrentUser()
-                        if (userData) dispatch(login(userData));
+                        const currentUser = await authservice.getCurrentUser()
+                        if (currentUser) dispatch(login({ userData: currentUser }));
                         navigate("/")
                   }
             } catch (error) {
@@ -69,15 +68,15 @@ function SignUp() {
                                           }
                                     />
                                     <Input
-                                    label="Password:"
-                                    type="password"
-                                    placeholder="Enter your password"
-                                    {...register("password",{
-                                          required: true,
-                                    })}
+                                          label="Password:"
+                                          type="password"
+                                          placeholder="Enter your password"
+                                          {...register("password", {
+                                                required: true,
+                                          })}
                                     />
                                     <Button type="submit"
-                                    className="w-full">Create Account</Button>
+                                          className="w-full">Create Account</Button>
                               </div>
                         </form>
 
