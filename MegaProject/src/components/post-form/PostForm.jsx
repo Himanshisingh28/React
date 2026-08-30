@@ -17,40 +17,48 @@ function PostForm({ post }) {
     const navigate = useNavigate()
     const userData = useSelector(state => state.auth.userData)
 
-    const submit = async (data) => {
-        if (post) {
-            const file = data.image[0] ? await appwriteService.uploadFile(data.image[0]) : null
+   const submit = async (data) => {
+    if (!userData) {
+        // session missing/expired - don't crash, tell the user
+        console.error("No logged-in user found. Please log in again.");
+        navigate("/login");
+        return;
+    }
 
-            if (file) {
-                appwriteService.deleteFile(post.featuredImage)
-            }
+    if (post) {
+        const file = data.image[0] ? await appwriteService.uploadFile(data.image[0]) : null
 
-            const dbPost = await appwriteService.updatePost(post.$id, {
+        if (file) {
+            appwriteService.deleteFile(post.featureImage)
+        }
+
+        const dbPost = await appwriteService.updatePost(post.$id, {
+            ...data,
+            featureImage: file ? file.$id : undefined,
+        })
+
+        if (dbPost) {
+            navigate(`/post/${dbPost.$id}`)
+        }
+    } else {
+        const file = await appwriteService.uploadFile(data.image[0]);
+
+        if (file) {
+            const fileId = file.$id
+            data.featureImage = fileId
+            const dbPost = await appwriteService.createPost({
                 ...data,
-                featuredImage: file ? file.$id : undefined,
+                userId: userData.$id,
             })
 
             if (dbPost) {
                 navigate(`/post/${dbPost.$id}`)
             }
         } else {
-            const file = await appwriteService.uploadFile(data.image[0]);
-
-            if (file) {
-                const fileId = file.$id
-                data.featuredImage = fileId
-                const dbPost = await appwriteService.createPost({
-                    ...data,
-                    userId: userData.$id,
-                })
-
-                if (dbPost) {
-                    navigate(`/post/${dbPost.$id}`)
-                }
-            }
+            console.error("Image upload failed - check console for the uploadFile error above.");
         }
     }
-
+}
     const slugTransform = useCallback((value) => {
         if (value && typeof value === 'string')
             return value
@@ -95,7 +103,7 @@ function PostForm({ post }) {
             </div>
             <div className="w-1/3 px-2">
                 <Input
-                    label="Featured Image :"
+                    label="Feature Image :"
                     type="file"
                     className="mb-4"
                     accept="image/png, image/jpg, image/jpeg, image/gif"
@@ -104,7 +112,7 @@ function PostForm({ post }) {
                 {post && (
                     <div className="w-full mb-4">
                         <img
-                            src={appwriteService.getFilePreview(post.featuredImage)}
+                            src={appwriteService.getFilePreview(post.featureImage)}
                             alt={post.title}
                             className="rounded-lg"
                         />
