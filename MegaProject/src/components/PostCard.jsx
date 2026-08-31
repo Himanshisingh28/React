@@ -2,22 +2,40 @@ import React from "react";
 import { Link } from "react-router-dom";
 import appwriteService from "../appwrite/config";
 
-function PostCard({$id, title, featureImage}){
-      return(
-            <Link to={`/post/${$id}`}>
-                  <div className="w-full bg-gray-100 rounded-xl p-4">
-                        <div className="w-full justify-center mb-4">
-                              <img src={appwriteService.getFilepreview (featureImage)}
-                               alt={title}
-                               className="rounded-xl" />
+function PostCard({ $id, title, featureImage }) {
+    return (
+        <Link to={`/post/${$id}`}>
+            <div className="w-full bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 cursor-pointer">
 
+                {/* Image */}
+                <div className="w-full h-52 overflow-hidden bg-gray-200">
+                    {featureImage ? (
+                        <img
+                            src={appwriteService.getFilePreview(featureImage)}
+                            alt={title}
+                            className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                        />
+                    ) : (
+                        <div className="w-full h-full flex items-center justify-center text-gray-400">
+                            No Image
                         </div>
-                        <h2
-                        className="text-xl font-bold">
-                              {title}</h2>
-                  </div>
-            </Link>
-      )
+                    )}
+                </div>
+
+                {/* Content */}
+                <div className="p-5">
+                    <h2 className="text-xl font-bold text-gray-800 line-clamp-2">
+                        {title}
+                    </h2>
+
+                    <p className="mt-2 text-sm text-gray-500">
+                        Read more →
+                    </p>
+                </div>
+
+            </div>
+        </Link>
+    );
 }
 
-export default PostCard
+export default PostCard;
