@@ -24,14 +24,14 @@ function App() {
   }, [])
 
   return !loading ? (
-    <div className='min-h-screen flex flex-wrap justify-between bg-gray-400'>
+    <div className='min-h-screen flex flex-col justify-between bg-gray-400'>
       <div className='w-full block'>
         <Header />
         <main>
           <Outlet />
         </main>
-        <Footer />
       </div>
+      <Footer />
     </div>
   ) : null
 }
