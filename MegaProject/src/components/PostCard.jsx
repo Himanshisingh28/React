@@ -5,15 +5,15 @@ import appwriteService from "../appwrite/config";
 function PostCard({ $id, title, featureImage }) {
     return (
         <Link to={`/post/${$id}`}>
-            <div className="w-full bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 cursor-pointer">
+            <div className="w-full h-full bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 cursor-pointer">
 
                 {/* Image */}
-                <div className="w-full h-52 overflow-hidden bg-gray-200">
+                <div className="w-full h-52 bg-gray-200 flex items-center justify-center">
                     {featureImage ? (
                         <img
                             src={appwriteService.getFilePreview(featureImage)}
                             alt={title}
-                            className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                            className="w-full h-full object-contain"
                         />
                     ) : (
                         <div className="w-full h-full flex items-center justify-center text-gray-400">

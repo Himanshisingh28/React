@@ -13,7 +13,9 @@ export default function Post() {
     const userData = useSelector((state) => state.auth.userData);
 
     const isAuthor =
-        post && userData ? post.userId === userData.$id : false;
+        post && userData
+            ? post.userId === userData.$id
+            : false;
 
     useEffect(() => {
         if (slug) {
@@ -39,73 +41,63 @@ export default function Post() {
     };
 
     return post ? (
-        <div className="min-h-screen bg-gray-50 py-10">
+        <div className="py-8">
             <Container>
 
-                {/* Main Post Card */}
-                <article className="max-w-4xl mx-auto bg-white rounded-2xl shadow-lg overflow-hidden">
+                {/* IMAGE SECTION */}
+                <div className="w-full h-[440px] flex justify-center items-center mb-4 relative border border-black rounded-xl p-2">
 
-                    {/* Featured Image */}
-                    <div className="relative w-full bg-gray-200">
-
-                        {post.featureImage ? (
-                            <img
-                                src={appwriteService.getFilePreview(
-                                    post.featureImage
-                                )}
-                                alt={post.title}
-                                className="w-full h-[400px] object-cover"
-                            />
-                        ) : (
-                            <div className="w-full h-[400px] flex items-center justify-center text-gray-400">
-                                No Image Available
-                            </div>
-                        )}
-
-                        {/* Edit / Delete */}
-                        {isAuthor && (
-                            <div className="absolute top-5 right-5 flex gap-3">
-
-                                <Link to={`/edit-post/${post.$id}`}>
-                                    <Button
-                                        bgColor="bg-green-500"
-                                        className="hover:bg-green-600 shadow-lg"
-                                    >
-                                        Edit
-                                    </Button>
-                                </Link>
-
-                                <Button
-                                    bgColor="bg-red-500"
-                                    onClick={deletePost}
-                                    className="hover:bg-red-600 shadow-lg"
-                                >
-                                    Delete
-                                </Button>
-
-                            </div>
-                        )}
-                    </div>
-
-                    {/* Post Content */}
-                    <div className="p-6 md:p-10">
-
-                        {/* Title */}
-                        <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-                            {post.title}
-                        </h1>
-
-                        {/* Divider */}
-                        <div className="border-b border-gray-200 mb-6"></div>
-
-                        {/* Content */}
-                        <div className="browser-css text-gray-700 leading-8 text-lg">
-                            {parse(post.content)}
+                    {post.featureImage ? (
+                        <img
+                            src={appwriteService.getFilePreview(
+                                post.featureImage
+                            )}
+                            alt={post.title}
+                            className="h-[420px] w-auto object-contain rounded-xl"
+                        />
+                    ) : (
+                        <div className="text-gray-400">
+                            No Image
                         </div>
+                    )}
 
-                    </div>
+                    {/* EDIT & DELETE BUTTONS */}
+                    {isAuthor && (
+                        <div className="absolute right-6 top-6 flex gap-3">
 
-                </article>
+                            <Link to={`/edit-post/${post.$id}`}>
+                                <Button
+                                    bgColor="bg-green-500"
+                                    className="hover:bg-green-600"
+                                >
+                                    Edit
+                                </Button>
+                            </Link>
+
+                            <Button
+                                bgColor="bg-red-500"
+                                className="hover:bg-red-600"
+                                onClick={deletePost}
+                            >
+                                Delete
+                            </Button>
+
+                        </div>
+                    )}
+
+                </div>
+
+                {/* TITLE */}
+                <div className="w-full mb-6">
+                    <h1 className="text-2xl font-bold">
+                        {post.title}
+                    </h1>
+                </div>
+
+                {/* CONTENT */}
+                <div className="browser-css">
+                    {parse(post.content)}
+                </div>
 
             </Container>
         </div>
