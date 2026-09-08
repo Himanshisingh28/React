@@ -1,7 +1,7 @@
 import React from "react";
 import image from "../assets/images.jpg";
 
-function Logo({ width = "100px", className }) {
+function Logo({ width = "60px", className }) {
   return (
     <img
       src={image}
@@ -9,11 +9,11 @@ function Logo({ width = "100px", className }) {
       className={className}
       style={{
         width,
-        borderRadius: "50%", // fully circular
-        objectFit: "cover",  // taaki image crop ho na ki squeeze
+        height: width,
+        borderRadius: "50%",
+        objectFit: "cover",
       }}
     />
   );
 }
-
 export default Logo;
