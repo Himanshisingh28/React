@@ -125,7 +125,7 @@ Some planned improvements include:
 
 ## 👩‍💻 Author
 
-**Muskan Kumari**
+**Himanshee Kumari**
 
 * GitHub: https://github.com/Muskan134
 * LinkedIn: https://www.linkedin.com/in/muskan-kumari-970b93305/
